@@ -69,15 +69,15 @@ An Example List with Embedded Items:
 
 /list/create - page for creating a new book list
 
-![list create](documentation/list-create.png)
+![list create](documentation/list-create.jpg)
 
 /list - page for showing all book lists
 
-![list](documentation/list.png)
+![list](documentation/list.jpg)
 
 /list/slug - page for showing specific book list
 
-![list](documentation/list-slug.png)
+![list](documentation/list-slug.jpg)
 
 /list/slug/bookname - page for showing specific book
 
