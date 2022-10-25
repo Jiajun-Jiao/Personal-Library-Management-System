@@ -53,7 +53,7 @@ An Example List with Embedded Items:
       rating: 4.6,
       contentOverview: "the story of a group of farm animals who rebel against their human farmer, hoping to create a society where the animals can be equal, free, and happy. Ultimately, the rebellion is betrayed, and the farm ends up in a state as bad as it was before, under the dictatorship of a pig named Napoleon.",
       comment: "another GREAT book!",
-      status: 1},
+      status: 2},
   ],
   createdAt: // timestamp
 }
@@ -61,23 +61,27 @@ An Example List with Embedded Items:
 
 ## [Link to Commented First Draft Schema](db.mjs) 
 
-(__TODO__: create a first draft of your Schemas in db.mjs and link to it)
+<!-- (__TODO__: create a first draft of your Schemas in db.mjs and link to it) -->
 
 ## Wireframes
 
-(__TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc.)
+<!-- (__TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc.) -->
 
-/list/create - page for creating a new shopping list
+/list/create - page for creating a new book list
 
 ![list create](documentation/list-create.png)
 
-/list - page for showing all shopping lists
+/list - page for showing all book lists
 
 ![list](documentation/list.png)
 
-/list/slug - page for showing specific shopping list
+/list/slug - page for showing specific book list
 
 ![list](documentation/list-slug.png)
+
+/list/slug/bookname - page for showing specific book
+
+![list](documentation/book.jpg)
 
 ## Site map
 
