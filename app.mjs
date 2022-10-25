@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(staticPath));
 
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('');
 });
 
 // listen to a port
