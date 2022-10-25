@@ -79,6 +79,10 @@ An Example List with Embedded Items:
 
 ![list](documentation/list-slug.jpg)
 
+/list/slug/description - page for editing description of a book list
+
+![list](documentation/list-description.jpg)
+
 /list/slug/bookname - page for showing specific book
 
 ![list](documentation/book.jpg)
