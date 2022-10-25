@@ -1,6 +1,10 @@
+<!-- (__TODO__: your project name) -->
+
 # Personal Library Management System
 
 ## Overview
+
+<!-- (__TODO__: a brief one or two paragraph, high-level description of your project) -->
 
 In the rapidly developed world these days, reading books provides people with a peaceful haven that protects us against the influence of such an impetuous and superficial society. Generally, the more one reads, the more one sees, experiences, and knows about themselves.
 
@@ -10,20 +14,20 @@ Personal Library Management System is a web app that allows users to keep track 
 
 ## Data Model
 
-(__TODO__: a description of your application's data and their relationships to each other) 
+<!-- (__TODO__: a description of your application's data and their relationships to each other)  -->
 
 The application will store Users, Lists and Items
 
 * users can have multiple lists (via references)
-* each list can have multiple items (by embedding)
+* each list can have multiple books (by embedding)
 
-(__TODO__: sample documents)
+<!-- (__TODO__: sample documents) -->
 
 An Example User:
 
 ```javascript
 {
-  username: "shannonshopper",
+  username: "libraryhost",
   hash: // a password hash,
   lists: // an array of references to List documents
 }
@@ -34,15 +38,26 @@ An Example List with Embedded Items:
 ```javascript
 {
   user: // a reference to a User object
-  name: "Breakfast foods",
+  name: "Literary Fiction",
+  description: "Novels that are character-driven rather than plot-driven, examine the human condition, use language in an experimental or poetic fashion, or are simply considered \"serious\" art.",
   items: [
-    { name: "pancakes", quantity: "9876", checked: false},
-    { name: "ramen", quantity: "2", checked: true},
+    { title: "The Great Gatsby",
+      time: "20220913",
+      rating: "4.3",
+      contentOverview: "The novel depicts first-person narrator Nick Carraway's interactions with mysterious millionaire Jay Gatsby and Gatsby's obsession to reunite with his former lover, Daisy Buchanan",
+      comment: "a GREAT book!",
+      status: "don't want to reread"},
+    
+    { title: "Animal Farm",
+      time: "20221002",
+      rating: "4.6",
+      contentOverview: "the story of a group of farm animals who rebel against their human farmer, hoping to create a society where the animals can be equal, free, and happy. Ultimately, the rebellion is betrayed, and the farm ends up in a state as bad as it was before, under the dictatorship of a pig named Napoleon.",
+      comment: "another GREAT book!",
+      status: "want to reread in the future"},
   ],
   createdAt: // timestamp
 }
 ```
-
 
 ## [Link to Commented First Draft Schema](db.mjs) 
 
