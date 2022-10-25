@@ -107,25 +107,30 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
 
 ## Research Topics
 
-(__TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed)
+<!-- (__TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed) -->
 
 * (5 points) Integrate user authentication
-    * I'm going to be using passport for user authentication
-    * And account has been made for testing; I'll email you the password
-    * see <code>cs.nyu.edu/~jversoza/ait-final/register</code> for register page
-    * see <code>cs.nyu.edu/~jversoza/ait-final/login</code> for login page
-* (4 points) Perform client side form validation using a JavaScript library
-    * see <code>cs.nyu.edu/~jversoza/ait-final/my-form</code>
-    * if you put in a number that's greater than 5, an error message will appear in the dom
-* (5 points) vue.js
-    * used vue.js as the frontend framework; it's a challenging library to learn, so I've assigned it 5 points
+    * I'm going to be using passport.js for user authentication
+    * It is an authentication middleware for Node.js
+    * It does not mount routes or assume any particular database schema, which maximizes flexibility and allows application-level decisions to be made
+    
+* (3 points) Unit testing with JavaScript
+    * It is executed in the browser to test if all functionalities are working as desired during the development cycle
+    * It saves time to ensure that all code meets quality standards before being deployed
+    * I'm going to be using Unit.js, Mocha, Jest, Jasmine, and Karma
 
-10 points total out of 8 required points (___TODO__: addtional points will __not__ count for extra credit)
+* (5 points) Automated functional testing for all of routes
+    * It is a technique that executes test cases automatically using some specific code during the level of system testing
+    * It is crucial for faster software release cycles; it verifies that the application is bug-free and ready for release.
+    * I'm going to use Selenium, Rainforest QA, Headless Chrome, and Cypress.io.
+
+13 points total out of 8 required points. Research topics are subjected to modify. I listed more points since I haven't decided which ones to do... I'm not familiar with any one of those :( 
+<!-- (___TODO__: addtional points will __not__ count for extra credit) -->
 
 
 ## [Link to Initial Main Project File](app.mjs) 
 
-(__TODO__: create a skeleton Express application with a package.json, app.mjs, views folder, etc. ... and link to your initial app.mjs)
+<!-- (__TODO__: create a skeleton Express application with a package.json, app.mjs, views folder, etc. ... and link to your initial app.mjs) -->
 
 ## Annotations / References Used
 
