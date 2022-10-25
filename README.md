@@ -43,17 +43,17 @@ An Example List with Embedded Items:
   items: [
     { title: "The Great Gatsby",
       time: "20220913",
-      rating: "4.3",
+      rating: 4.3,
       contentOverview: "The novel depicts first-person narrator Nick Carraway's interactions with mysterious millionaire Jay Gatsby and Gatsby's obsession to reunite with his former lover, Daisy Buchanan",
       comment: "a GREAT book!",
-      status: "don't want to reread"},
+      status: 0},
     
     { title: "Animal Farm",
       time: "20221002",
-      rating: "4.6",
+      rating: 4.6,
       contentOverview: "the story of a group of farm animals who rebel against their human farmer, hoping to create a society where the animals can be equal, free, and happy. Ultimately, the rebellion is betrayed, and the farm ends up in a state as bad as it was before, under the dictatorship of a pig named Napoleon.",
       comment: "another GREAT book!",
-      status: "want to reread in the future"},
+      status: 1},
   ],
   createdAt: // timestamp
 }
