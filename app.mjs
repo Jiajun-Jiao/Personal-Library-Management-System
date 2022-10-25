@@ -3,13 +3,12 @@ import path from 'path'
 import { fileURLToPath } from 'url';
 import bodyParser from 'body-parser';
 import session from 'express-session';
-require('./db.mjs');
+import './db.mjs';
 
 // use function to create application object
 const app = express();
 
 // enable sessions
-const session = require('express-session');
 const sessionOptions = {
     secret: 'secret cookie thang (store this elsewhere!)',
     resave: true,
