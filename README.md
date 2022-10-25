@@ -67,13 +67,17 @@ An Example List with Embedded Items:
 
 <!-- (__TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc.) -->
 
-/list/create - page for creating a new book list
+/ - page for login or register
 
-![list create](documentation/list-create.jpg)
+![list](documentation/login.jpg)
 
 /list - page for showing all book lists
 
 ![list](documentation/list.jpg)
+
+/list/create - page for creating a new book list
+
+![list create](documentation/list-create.jpg)
 
 /list/slug - page for showing specific book list
 
