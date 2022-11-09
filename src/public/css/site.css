@@ -13,6 +13,7 @@ body {
 	position: absolute;
 	top: 0.25em;
 	left: 0.75em;
+	color:rgb(125, 109, 249)
 }
 
 .login-status {
@@ -53,7 +54,23 @@ div.content {
 .booklist{
 	margin:0 auto;
 	text-align: left;
+	margin-left: 30%;
+	margin-right: 30%;
+}
+
+.listdesc{
+	margin-left: 5%;
+	margin-right: 5%;
+	overflow-wrap: break-word;
+}
+
+.head{
+	background-color: rgb(109, 249, 249);
+	border-radius: 5px;
+	border-color: #222;
+	border-style: solid;
 	margin-left: 20%;
+	margin-right: 20%;
 }
 
 .note {
@@ -75,6 +92,10 @@ div.content {
 
 form div {
 	padding-bottom: 0.5em;
+	margin: auto; 
+	width:220px;
+	display: grid;
+	justify-content: center;
 }
 
 textarea {
@@ -82,9 +103,6 @@ textarea {
 	height: 12em;
 }
 
-form textarea, form input {
-	display: block;
-}
 
 input {
 	border: 1px solid #555;

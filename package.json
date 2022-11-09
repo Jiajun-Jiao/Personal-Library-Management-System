@@ -54,6 +54,7 @@
     "mime-db": "^1.52.0",
     "mime-types": "^2.1.35",
     "minimist": "^1.2.7",
+    "mocha": "^10.1.0",
     "mongodb": "^4.11.0",
     "mongodb-connection-string-url": "^2.5.4",
     "mongoose": "^6.7.2",
@@ -98,6 +99,7 @@
     "type-is": "^1.6.18",
     "uglify-js": "^3.17.4",
     "uid-safe": "^2.1.5",
+    "unit.js": "^2.1.1",
     "unpipe": "^1.0.0",
     "url": "^0.11.0",
     "util": "^0.10.4",
@@ -121,5 +123,24 @@
   "bugs": {
     "url": "https://github.com/nyu-csci-ua-0467-001-002-fall-2022/final-project-Jiajun-Jiao/issues"
   },
-  "homepage": "https://github.com/nyu-csci-ua-0467-001-002-fall-2022/final-project-Jiajun-Jiao#readme"
+  "homepage": "https://github.com/nyu-csci-ua-0467-001-002-fall-2022/final-project-Jiajun-Jiao#readme",
+  "devDependencies": {
+    "jasmine": "^4.5.0",
+    "jest": "^29.3.1"
+  },
+  "jest": {
+		"testMatch": [
+			"**/__tests__/**/*.?(m|c)js?(x)",
+			"**/?(*.)(spec|test).?(m|c)js?(x)"
+		],
+		"moduleFileExtensions": [
+			"js",
+			"cjs",
+			"mjs"
+		],
+		"transform": {
+			"^.+\\.[t|j]sx?$": "babel-jest", 
+			"^.+.m?js$": "babel-jest"
+		}
+	}
 }

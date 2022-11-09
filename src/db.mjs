@@ -38,7 +38,7 @@ const ListSchema = new mongoose.Schema({
   user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
   name: {type: String, required: true},
   description: {type: String, default: "", required: false},
-  createdAt: {type: Date, required: false},
+  createdAt: {type: String, required: true},
   items: [{type: Schema.Types.ObjectId, ref: 'Item'}]
 });
 

@@ -70,9 +70,7 @@ app.use((req, res, next) => {
 // ROUTE HANDLERS //
 ////////////////////
 app.get('/', (req, res) => {
-  console.log("IN!")
   BookList.find({}).sort('-createdAt').exec((err, lists) => {
-    console.log("HERE!")
     res.render('index', {user: req.session.user, home: true, booklists: lists});
   });
 });
@@ -89,10 +87,22 @@ app.get('/booklist/add', (req, res) => {
 app.post('/booklist/add', (req, res) => {
   // TODO: complete POST /booklist/add
   if(req.session.user){
+    const d = new Date();
+    let date = d.getDate();
+    let month = d.getMonth() + 1;
+    const year = d.getFullYear();
+    if (date < 10) {
+      date = '0' + date;
+    }
+    if (month < 10) {
+      month = '0' + month;
+    }
     const bookList = new BookList({
       name: req.body.name,
       description: req.body.description,
-      user: req.session.user._id
+      user: req.session.user._id,
+      // createdAt: (d.getMonth()+1 > 10 ? d.getMonth()+1 : `0${d.getMonth()+1}`) + "/" + ((d.getDate() > 10 ? d.getDate() : `0${d.getDate()}`)-0) + "/" + d.getFullYear().toString()
+      createdAt: `${date}/${month}/${year}`
     });
     bookList.save(function(err){
       if(!err){
