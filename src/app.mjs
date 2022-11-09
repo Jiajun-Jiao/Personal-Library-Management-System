@@ -101,8 +101,7 @@ app.post('/booklist/add', (req, res) => {
       name: req.body.name,
       description: req.body.description,
       user: req.session.user._id,
-      // createdAt: (d.getMonth()+1 > 10 ? d.getMonth()+1 : `0${d.getMonth()+1}`) + "/" + ((d.getDate() > 10 ? d.getDate() : `0${d.getDate()}`)-0) + "/" + d.getFullYear().toString()
-      createdAt: `${date}/${month}/${year}`
+      createdAt: `${month}/${date}/${year}`
     });
     bookList.save(function(err){
       if(!err){
