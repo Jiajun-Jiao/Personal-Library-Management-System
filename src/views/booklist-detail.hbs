@@ -14,7 +14,7 @@
     <a href="/booklist/{{bookList.name}}/addbook">Add Book</a>
     <ol>
     {{#each bookList.books as |b|}}
-    {{b.title}} <br>
+    {{b.title}}&nbsp;&nbsp;&nbsp;[<a href= "/booklist/{{b.list}}/{{b.title}}/detail">detail</a>]<br>
     {{/each}}
     </ol>
 </div>

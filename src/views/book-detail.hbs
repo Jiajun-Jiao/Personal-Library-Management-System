@@ -1,0 +1,21 @@
+<h2>{{book.title}}</h2>
+<br>
+<div class = "booklist">
+    <b>Time:</b> <u>{{book.time}}</u><br>
+    <br>
+    <b>Rating:</b> {{book.rating}}<br>
+    <br>
+    <b>Content Overview:</b> {{book.contentOverview}}<br>
+    <br>
+    <b>Comment:</b> {{book.comment}}<br>
+    <br>
+    <b>Plan to read again? :</b> {{book.status}} <br>
+    <br>
+    <b>Belonged to Booklist:</b> <i>{{book.list}}</i><br>
+    <br>
+    <div class = "listdesc">
+        {{bookList.description}}<br>
+    </div>
+    <br>
+    <a href="/booklist/{{book.list}}">Return to Booklist</a>
+</div>

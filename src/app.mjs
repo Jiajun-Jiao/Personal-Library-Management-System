@@ -130,14 +130,19 @@ app.get('/booklist/:slug', (req, res) => {
 });
 
 app.get('/booklist/:slug/addbook', (req, res) => {
-  BookList.findOne({slug: req.params.slug}).populate('user').exec((err, bookList) => {
-    if (err){
-      console.log("error: SLUG ERROR");
-      res.render('error', {message: "SLUG ERROR"});
-    }else{
-      res.render('book-add', {bookList: bookList});
-    }
-  });
+  if(req.session.user){
+    BookList.findOne({slug: req.params.slug}).populate('user').exec((err, bookList) => {
+      if (err){
+        console.log("error: SLUG ERROR");
+        res.render('error', {message: "SLUG ERROR"});
+      }else{
+        res.render('book-add', {bookList: bookList});
+      }
+    });
+  }
+  else{
+    res.redirect('/login');
+  }
 });
 
 app.post('/booklist/:slug/addbook', (req, res) => {
@@ -149,7 +154,8 @@ app.post('/booklist/:slug/addbook', (req, res) => {
       rating: req.body.number,
       contentOverview: req.body.contentOverview,
       comment: req.body.comment,
-      status: req.body.choose
+      status: req.body.choose,
+      list: req.params.slug
     });
     BookList.findOne({slug: req.params.slug}).populate('user').exec((err, bookList) => {
       bookList.books.push(book);
@@ -167,6 +173,18 @@ app.post('/booklist/:slug/addbook', (req, res) => {
   else{
     res.redirect('/login');
   }
+});
+
+app.get('/booklist/:slug/:slug2/detail', (req, res) => {
+  BookList.findOne({name: req.params.slug}).populate('user').exec((err, booklist) => {
+    if (err){
+      console.log("error: SLUG ERROR");
+      res.render('error', {message: "SLUG ERROR"});
+    }else{
+      res.render('book-detail', {book: booklist.books.find(book => (book.title == req.params.slug2))});
+    }
+  });
+
 });
 
 
