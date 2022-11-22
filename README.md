@@ -6,6 +6,8 @@
 
 * I implemented an extra add-book form as well as the storage of that data into an array in specific BookList in mongodb. And then I implemented a .hbs file to render the details of the book. The changes along this process include the modification of books attribute in ListSchema in db.mjs from type ObjectId to Array, as well as the status attribute in BookSchema from type Number to String in order to fit the radio input in the new layout. An additional attribute "list" is also added into the BookSchema to keep track of the list that the book belongs to. Therefore I could add links such as "Return to Booklist" and, most importantly, generate a link that contains the bookList-name within its own loop "#each bookList.books as |b|". (To be more clear, please refer to line 16-18 in booklist-detail.hbs).
 
+* I figured out that my idea of implementing unit testing may not fit my current project, and therefore I'm planning to seek help from office hour. On the other hand, I started to made more progress on another research topic - password.js. The tasks to be done in the future is simply detailedly modify the verify function according my application's database, schema, and password-hashing function.
+
 ## Overview
 
 <!-- (__TODO__: a brief one or two paragraph, high-level description of your project) -->
