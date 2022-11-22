@@ -37,8 +37,8 @@ const UserSchema = new mongoose.Schema({
 });
 
 // a book in a book list
-// * includes the detail of this item
-const ItemSchema = new mongoose.Schema({
+// * includes the detail of this Book
+const BookSchema = new mongoose.Schema({
   title: {type: String, required: true},
   time: {type: String, required: true},
   rating: {type: Number, default: 0, min: 0, max: 5, required: true},
@@ -58,7 +58,8 @@ const ListSchema = new mongoose.Schema({
   name: {type: String, required: true},
   description: {type: String, default: "", required: false},
   createdAt: {type: String, required: true},
-  items: [{type: Schema.Types.ObjectId, ref: 'Item'}]
+  books: {type: Array, default: []}
+  // [{type: Schema.Types.ObjectId, ref: 'Book'}]
 });
 
 // TODO: add remainder of setup for slugs, connection, registering models, etc. below
@@ -68,6 +69,6 @@ ListSchema.plugin(mongooseSlugPlugin, {tmpl: '<%=name%>'});
 
 //register models
 mongoose.model('User', UserSchema);
-mongoose.model('Item', ItemSchema);
+mongoose.model('Book', BookSchema);
 mongoose.model('BookList', ListSchema);
 

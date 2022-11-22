@@ -12,8 +12,9 @@
     <br>
     <b>BOOKS:</b> 
     <a href="/booklist/{{bookList.name}}/addbook">Add Book</a>
-    <br>
-    <div class = "listdesc">
-        {{booklist.items}}
-    </div>
+    <ol>
+    {{#each bookList.books as |b|}}
+    {{b.title}} <br>
+    {{/each}}
+    </ol>
 </div>

@@ -40,7 +40,7 @@ app.use(session({
 }));
 
 const User = mongoose.model('User');
-const Item = mongoose.model('Item');
+const Book = mongoose.model('Book');
 const BookList = mongoose.model('BookList');
 
 const loginMessages = {"PASSWORDS DO NOT MATCH": 'Incorrect password', "USER NOT FOUND": 'User doesn\'t exist'};
@@ -139,6 +139,37 @@ app.get('/booklist/:slug/addbook', (req, res) => {
     }
   });
 });
+
+app.post('/booklist/:slug/addbook', (req, res) => {
+  // TODO: complete POST /booklist/add
+  if(req.session.user){
+    const book = new Book({
+      title: req.body.title,
+      time: req.body.time,
+      rating: req.body.number,
+      contentOverview: req.body.contentOverview,
+      comment: req.body.comment,
+      status: req.body.choose
+    });
+    BookList.findOne({slug: req.params.slug}).populate('user').exec((err, bookList) => {
+      bookList.books.push(book);
+      bookList.save(function(err){
+        if(!err){
+          res.redirect('/'); 
+        }
+        else{
+          console.log("error: SAVE ERROR");
+          res.render('booklist-add',{message: 'SAVE ERROR'});
+        }
+      });
+    });
+  }
+  else{
+    res.redirect('/login');
+  }
+});
+
+
 
 app.get('/register', (req, res) => {
   res.render('register');
