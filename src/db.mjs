@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
  dbconf = conf.dbconf;
 } else {
  // if we're not in PRODUCTION mode, then use
- dbconf = 'mongodb://localhost/jj3100finalproject';
+ dbconf = 'mongodb://127.0.0.1/jj3100finalproject';
 }
 // 
 mongoose.connect(dbconf);
