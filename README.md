@@ -46,14 +46,16 @@ An Example List with Embedded Items:
       rating: 4.3,
       contentOverview: "The novel depicts first-person narrator Nick Carraway's interactions with mysterious millionaire Jay Gatsby and Gatsby's obsession to reunite with his former lover, Daisy Buchanan",
       comment: "a GREAT book!",
-      status: 0},
+      status: "yes",
+      list: "Literary Fiction"},
     
     { title: "Animal Farm",
       time: "20221002",
       rating: 4.6,
       contentOverview: "the story of a group of farm animals who rebel against their human farmer, hoping to create a society where the animals can be equal, free, and happy. Ultimately, the rebellion is betrayed, and the farm ends up in a state as bad as it was before, under the dictatorship of a pig named Napoleon.",
       comment: "another GREAT book!",
-      status: 2},
+      status: "no",
+      list: "Literary Fiction"},
   ],
   createdAt: // timestamp
 }
@@ -67,29 +69,38 @@ An Example List with Embedded Items:
 
 <!-- (__TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc.) -->
 
-/ - page for login or register
 
-![list](documentation/login.jpg)
+/ - home page, showing all book lists
 
-/list - page for showing all book lists
+![list](documentation/main.png)
 
-![list](documentation/list.jpg)
+/register - page for register
 
-/list/create - page for creating a new book list
+![list](documentation/register.png)
 
-![list create](documentation/list-create.jpg)
+/login - page for login
 
-/list/slug - page for showing specific book list
+![list](documentation/login.png)
 
-![list](documentation/list-slug.jpg)
+/booklist/add - page for creating a new book list
 
-/list/slug/description - page for editing description of a book list
+![list create](documentation/list-add.png)
+
+/booklist/slug - page for showing specific book list
+
+![list](documentation/list-slug.png)
+
+/booklist/slug/addbook - page for adding a new book
+
+![list](documentation/addbook.png)
+
+/booklist/slug/slug2/detail - page for showing specific book
+
+![list](documentation/book-slug.png)
+
+/list/slug/description - (hasn't been implemented yet) page for editing description of a book list
 
 ![list](documentation/list-description.jpg)
-
-/list/slug/bookname - page for showing specific book
-
-![list](documentation/book.jpg)
 
 ## Site map
 
@@ -145,3 +156,6 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
 7. [Rainforest QA](https://www.rainforestqa.com)
 8. [Headless Chrome get started](https://developer.chrome.com/blog/headless-chrome)
 9. [Cypress](https://www.cypress.io)
+
+## Milestone 3 Update:
+* I implemented an extra add-book form as well as the storage of that data into an array in specific BookList in mongodb. And then I implemented a .hbs file to render the details of the book. The changes along this process include the modification of books attribute in ListSchema in db.mjs from type ObjectId to Array, as well as the status attribute in BookSchema from type Number to String in order to fit the radio input in the new layout. An additional attribute "list" is also added into the BookSchema to keep track of the list that the book belongs to. Therefore I could add links such as "Return to Booklist" and, most importantly, generate a link that contains the bookList-name within its own loop "#each bookList.books as |b|". (To be more clear, please refer to line 16-18 in booklist-detail.hbs).

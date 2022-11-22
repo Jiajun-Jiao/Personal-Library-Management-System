@@ -75,6 +75,56 @@ app.get('/', (req, res) => {
   });
 });
 
+app.get('/register', (req, res) => {
+  res.render('register');
+});
+
+app.post('/register', (req, res) => {
+  // setup callbacks for register success and error
+  function success(newUser) {
+    auth.startAuthenticatedSession(req, newUser, (err) => {
+        if (!err) {
+            res.redirect('/');
+        } else {
+            res.render('error', {message: 'err authing???'}); 
+        }
+    });
+  }
+
+  function error(err) {
+    res.render('register', {message: registrationMessages[err.message] ?? 'Registration error'}); 
+  }
+
+  // attempt to register new user
+  auth.register(req.body.username, req.body.email, req.body.password, error, success);
+});
+        
+
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
+app.post('/login', (req, res) => {
+  // setup callbacks for login success and error
+  function success(user) {
+    auth.startAuthenticatedSession(req, user, (err) => {
+      if(!err) {
+        res.redirect('/'); 
+      } else {
+        res.render('error', {message: 'error starting auth sess: ' + err}); 
+      }
+    }); 
+  }
+
+  function error(err) {
+    res.render('login', {message: loginMessages[err.message] || 'Login unsuccessful'}); 
+  }
+
+  // attempt to login
+  auth.login(req.body.username, req.body.password, error, success);
+});
+
+
 app.get('/booklist/add', (req, res) => {
   if(req.session.user){
     res.render('booklist-add');
@@ -185,57 +235,6 @@ app.get('/booklist/:slug/:slug2/detail', (req, res) => {
     }
   });
 
-});
-
-
-
-app.get('/register', (req, res) => {
-  res.render('register');
-});
-
-app.post('/register', (req, res) => {
-  // setup callbacks for register success and error
-  function success(newUser) {
-    auth.startAuthenticatedSession(req, newUser, (err) => {
-        if (!err) {
-            res.redirect('/');
-        } else {
-            res.render('error', {message: 'err authing???'}); 
-        }
-    });
-  }
-
-  function error(err) {
-    res.render('register', {message: registrationMessages[err.message] ?? 'Registration error'}); 
-  }
-
-  // attempt to register new user
-  auth.register(req.body.username, req.body.email, req.body.password, error, success);
-});
-        
-
-app.get('/login', (req, res) => {
-    res.render('login');
-});
-
-app.post('/login', (req, res) => {
-  // setup callbacks for login success and error
-  function success(user) {
-    auth.startAuthenticatedSession(req, user, (err) => {
-      if(!err) {
-        res.redirect('/'); 
-      } else {
-        res.render('error', {message: 'error starting auth sess: ' + err}); 
-      }
-    }); 
-  }
-
-  function error(err) {
-    res.render('login', {message: loginMessages[err.message] || 'Login unsuccessful'}); 
-  }
-
-  // attempt to login
-  auth.login(req.body.username, req.body.password, error, success);
 });
 
 // listen to a port
