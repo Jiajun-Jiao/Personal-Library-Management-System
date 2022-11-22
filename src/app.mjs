@@ -129,6 +129,17 @@ app.get('/booklist/:slug', (req, res) => {
   });
 });
 
+app.get('/booklist/:slug/addbook', (req, res) => {
+  BookList.findOne({slug: req.params.slug}).populate('user').exec((err, bookList) => {
+    if (err){
+      console.log("error: SLUG ERROR");
+      res.render('error', {message: "SLUG ERROR"});
+    }else{
+      res.render('book-add', {bookList: bookList});
+    }
+  });
+});
+
 app.get('/register', (req, res) => {
   res.render('register');
 });

@@ -99,12 +99,18 @@ form div {
 }
 
 textarea {
-	width: 25em;
-	height: 12em;
+	width: 20em;
+	height: 6em;
 }
 
 
 input {
 	border: 1px solid #555;
 	font-size: 1em;
+}
+
+
+.radio-group {
+    display: flex;
+    flex-direction: row;
 }
