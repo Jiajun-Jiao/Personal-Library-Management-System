@@ -222,6 +222,14 @@ app.get('/booklist/:slug/addbook', (req, res) => {
 
 app.post('/booklist/:slug/addbook', (req, res) => {
   // TODO: complete POST /booklist/add
+  let sta = false;
+  if(req.body.choose === "yes"){
+    sta = true;
+  }
+  else{
+    sta = false;
+  }
+
   if(req.session.user){
     const book = new Book({
       title: req.body.title,
@@ -229,7 +237,7 @@ app.post('/booklist/:slug/addbook', (req, res) => {
       rating: req.body.number,
       contentOverview: req.body.contentOverview,
       comment: req.body.comment,
-      status: req.body.choose,
+      status: sta,
       list: req.params.slug
     });
     BookList.findOne({slug: req.params.slug}).populate('user').exec((err, bookList) => {
@@ -259,7 +267,57 @@ app.get('/booklist/:slug/:slug2/detail', (req, res) => {
       res.render('book-detail', {book: booklist.books.find(book => (book.title == req.params.slug2))});
     }
   });
+});
 
+app.get('/booklist/:slug/:slug2/detail/edit', (req, res) => {
+  BookList.findOne({name: req.params.slug}).populate('user').exec((err, booklist) => {
+    if (err){
+      console.log("error: SLUG ERROR");
+      res.render('error', {message: "SLUG ERROR"});
+    }else{
+      res.render('book-detail-edit', {book: booklist.books.find(book => (book.title == req.params.slug2))});
+    }
+  });
+});
+
+app.post('/booklist/:slug/:slug2/detail/edit', (req, res) => {
+  if(req.session.user){
+    BookList.findOne({name: req.params.slug}).populate('user').exec((err, booklist) => {
+      if (err){
+        console.log("error: SLUG ERROR");
+        res.render('error', {message: "SLUG ERROR"});
+      }else{
+        let sta = false;
+        if(req.body.choose === "yes"){
+          sta = true;
+        }
+        else{
+          sta = false;
+        }
+        const book = booklist.books.find(book => (book.title == req.params.slug2));
+        const index = booklist.books.indexOf(book);
+        book.title = req.body.title,
+        book.time = req.body.time,
+        book.rating = req.body.number,
+        book.contentOverview = req.body.contentOverview,
+        book.comment = req.body.comment,
+        book.status = sta,
+        book.list = req.params.slug
+        booklist.books[index] = book;
+        booklist.save(function (err) {
+          if (err)
+          {
+            console.log("error: UPDATE ERROR");
+            res.render('error', {message: "UPDATE ERROR"});
+          }
+        });
+        res.render('book-detail', {book: book});
+      }
+    });
+  }
+  else{
+    res.redirect('/login');
+  }
 });
 
 // listen to a port

@@ -44,7 +44,7 @@ const BookSchema = new mongoose.Schema({
   rating: {type: Number, default: 0, min: 0, max: 5, required: true},
   contentOverview: {type: String, default: "", required: false},
   comment: {type: String, default: "", required: false},
-  status: {type: String, default: "", required: true},
+  status: {type: Boolean, default: false, required: true},
   list: {type: String, required: true}
 }, {
   _id: true

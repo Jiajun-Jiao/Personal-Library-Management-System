@@ -9,7 +9,11 @@
     <br>
     <b>Comment:</b> {{book.comment}}<br>
     <br>
-    <b>Plan to read again? :</b> {{book.status}} <br>
+    {{#if book.status}}
+    <b>Plan to read again? : </b> Yes<br>
+    {{else}}
+    <b>Plan to read again? : </b> No <br>
+    {{/if}}
     <br>
     <b>Belonged to Booklist:</b> <i>{{book.list}}</i><br>
     <br>
@@ -17,5 +21,7 @@
         {{bookList.description}}<br>
     </div>
     <br>
-    <a href="/booklist/{{book.list}}">Return to Booklist</a>
+    <a href="/booklist/{{book.list}}/{{book.title}}/detail/edit"><button>Edit&rarr;</button></a>
+    <br>
+    <a href="/booklist/{{book.list}}"><button>Return to Booklist&rarr;</button></a>
 </div>
