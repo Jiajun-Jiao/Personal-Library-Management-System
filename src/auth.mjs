@@ -8,7 +8,7 @@ const reset = (user, oldpswd, newpswd1, newpswd2, error, success) => {
   if(newpswd1 !== newpswd2){
     error("ENTERED DIFFERENT NEW PASSWORD");
   }
-  else if((((oldpswd.length < 8)) || (newpswd1.length < 8))){
+  else if((oldpswd.length < 8) || (newpswd1.length < 8)){
     error("PASSWORD TOO SHORT");
   }
   else{
@@ -27,7 +27,7 @@ const reset = (user, oldpswd, newpswd1, newpswd2, error, success) => {
           else{
             success(user, newpswd1);
           }
-         });
+        });
       }
     });
   }

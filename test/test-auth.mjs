@@ -64,7 +64,7 @@ describe('ERROR3', function(){
 });
 
 describe('PASS1', function(){
-  it('should call error function with "PASSWORDS DO NOT MATCH" when user entered an incorrect old password', function(done){
+  it('should call success function with new password as its second parameter when user entered everything correctly', function(done){
     function error(obj) { 
       expect(obj).to.equal('PASSWORDS DO NOT MATCH');
       done();
