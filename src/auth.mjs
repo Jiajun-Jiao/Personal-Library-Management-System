@@ -5,11 +5,11 @@ import mongoose from 'mongoose';
 const User = mongoose.model('User');
 
 const reset = (user, oldpswd, newpswd1, newpswd2, error, success) => {
-  if((((oldpswd.length < 8)) || (newpswd1.length < 8))){
-    error("PASSWORD TOO SHORT");
-  }
-  else if(newpswd1 != newpswd2){
+  if(newpswd1 !== newpswd2){
     error("ENTERED DIFFERENT NEW PASSWORD");
+  }
+  else if((((oldpswd.length < 8)) || (newpswd1.length < 8))){
+    error("PASSWORD TOO SHORT");
   }
   else{
     User.findOne({username: user.username}).exec((err1, user) => {
