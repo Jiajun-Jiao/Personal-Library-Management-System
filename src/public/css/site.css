@@ -8,6 +8,9 @@ body {
 	margin-top: 0px;
 	padding: none;
 }
+ol{
+	padding-left: 0;
+}
 
 .home-link {
 	position: absolute;
@@ -113,4 +116,14 @@ input {
 .radio-group {
     display: flex;
     flex-direction: row;
+}
+
+button{
+	font-size: 0.9em;
+	border-radius: 0.4em;
+}
+
+.return-button{
+	margin: 0 auto;
+    display: block;
 }

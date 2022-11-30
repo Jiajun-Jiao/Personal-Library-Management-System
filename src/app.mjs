@@ -199,7 +199,7 @@ app.get('/booklist/:slug', (req, res) => {
       console.log("error: SLUG ERROR");
       res.render('error', {message: "SLUG ERROR"});
     }else{
-      res.render('booklist-detail', {bookList: bookList});
+      res.render('booklist', {bookList: bookList});
     }
   });
 });
@@ -319,6 +319,54 @@ app.post('/booklist/:slug/:slug2/detail/edit', (req, res) => {
     res.redirect('/login');
   }
 });
+
+app.get('/booklist/:slug/edit', (req, res) => {
+  BookList.findOne({name: req.params.slug}).exec((err, booklist) => {
+    if (err){
+      console.log("error: SLUG ERROR");
+      res.render('error', {message: "SLUG ERROR"});
+    }else{
+      res.render('booklist-edit', {booklist: booklist});
+    }
+  });
+});
+
+app.post('/booklist/:slug/edit', (req, res) => {
+  if(req.session.user){
+    BookList.findOne({name: req.params.slug}).exec((err, booklist) => {
+      if (err){
+        console.log("error: SLUG ERROR");
+        res.render('error', {message: "SLUG ERROR"});
+      }else{
+        booklist.name = req.body.name,
+        booklist.description = req.body.description;
+        booklist.books.map(book => {
+          const new_book = book;
+          new_book.list = booklist.name;
+          return new_book;
+        });
+        booklist.books.forEach(b => {
+          console.log(b.list+",");
+        });
+        booklist.markModified("books");
+        booklist.save(function (err) {
+          if (err)
+          {
+            console.log("error: UPDATE ERROR");
+            res.render('error', {message: "UPDATE ERROR"});
+          }
+          else{
+            res.redirect('/booklist/' + booklist.name);
+          }
+        });
+      }
+    });
+  }
+  else{
+    res.redirect('/login');
+  }
+});
+
 
 // listen to a port
 app.listen(process.env.PORT || 3000);

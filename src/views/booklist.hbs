@@ -1,4 +1,6 @@
 <h2>{{bookList.name}}</h2>
+<a href="/booklist/{{bookList.name}}/edit"><button>Edit</button></a>
+<br>
 <br>
 <div class = "booklist">
     <b>Created BY:</b> <u>{{bookList.user.username}}</u><br>
@@ -11,10 +13,13 @@
     </div>
     <br>
     <b>BOOKS:</b> 
-    <a href="/booklist/{{bookList.name}}/addbook">Add Book</a>
+    <a href="/booklist/{{bookList.name}}/addbook"><button>Add Book</button></a>
     <ol>
     {{#each bookList.books as |b|}}
-    {{b.title}}&nbsp;&nbsp;&nbsp;[<a href= "/booklist/{{b.list}}/{{b.title}}/detail">detail</a>]<br>
+    {{b.title}}&nbsp;-&nbsp;<a href= "/booklist/{{b.list}}/{{b.title}}/detail"><button>detail</button></a>
+    <br>
     {{/each}}
     </ol>
+    <br>
+    <a class = "return-button" href="/"><button>Return Home</button></a>
 </div>

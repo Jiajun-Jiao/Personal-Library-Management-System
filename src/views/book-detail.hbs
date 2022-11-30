@@ -1,4 +1,6 @@
 <h2>{{book.title}}</h2>
+<a href="/booklist/{{book.list}}/{{book.title}}/detail/edit"><button>Edit</button></a>
+<br>
 <br>
 <div class = "booklist">
     <b>Time:</b> <u>{{book.time}}</u><br>
@@ -20,8 +22,5 @@
     <div class = "listdesc">
         {{bookList.description}}<br>
     </div>
-    <br>
-    <a href="/booklist/{{book.list}}/{{book.title}}/detail/edit"><button>Edit&rarr;</button></a>
-    <br>
-    <a href="/booklist/{{book.list}}"><button>Return to Booklist&rarr;</button></a>
+    <a href="/booklist/{{book.list}}"><button>Return to Booklist</button></a>
 </div>
