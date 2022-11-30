@@ -5,8 +5,8 @@ import bodyParser from 'body-parser';
 import session from 'express-session';
 import './db.mjs';
 import mongoose, { model } from 'mongoose';
-import url from 'url';
 import * as auth from './auth.mjs';
+import bcrypt from 'bcryptjs';
 
 // passport.js
 
@@ -345,9 +345,6 @@ app.post('/booklist/:slug/edit', (req, res) => {
           new_book.list = booklist.name;
           return new_book;
         });
-        booklist.books.forEach(b => {
-          console.log(b.list+",");
-        });
         booklist.markModified("books");
         booklist.save(function (err) {
           if (err)
@@ -367,6 +364,61 @@ app.post('/booklist/:slug/edit', (req, res) => {
   }
 });
 
+app.get('/passwordReset', (req, res) => {
+  res.render('password-reset');
+});
 
+app.post('/passwordReset', (req, res) => {
+  if (!req.session.user) {
+    res.render("login", {message: "Login First to Reset Password"});
+  }
+  else if((((req.body.oldpswd.length < 8)) || (req.body.newpswd1.length < 8))){
+    console.log("PASSWORD TOO SHORT");
+    res.render("password-reset", {
+      message: "PASSWORD TOO SHORT"
+    });
+  }
+  else if(req.body.newpswd1 != req.body.newpswd2){
+    console.log("ENTERED DIFFERENT NEW PASSWORD");
+    res.render("password-reset", {
+      message: "ENTERED DIFFERENT NEW PASSWORD"
+    });
+  }
+  else{
+    User.findOne({username: req.session.user.username}).exec((err, user) => {
+      if (err) {
+          res.send(err);
+      }
+       else {
+        bcrypt.compare(req.body.oldpswd, user.password, (err, passwordMatch) => {
+          // regenerate session if passwordMatch is true
+          if(err){
+            console.log("PASSWORD FIND ERROR");
+          }
+          else if(!passwordMatch){
+            console.log("PASSWORDS DO NOT MATCH");
+          }
+          else{
+            bcrypt.hash(req.body.newpswd1, 10, function(err, hash) {
+              if (err){
+                console.log(err);
+              }else{
+                user.password = hash;
+                user.save(function(err){
+                  if(err){
+                    console.log("err");
+                    res.send(err);
+                  }
+                });
+                res.redirect("/");
+              }
+            });
+          }
+         });
+      }
+  });
+  }
+
+});
 // listen to a port
 app.listen(process.env.PORT || 3000);
