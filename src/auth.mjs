@@ -12,13 +12,12 @@ const reset = (user, oldpswd, newpswd1, newpswd2, error, success) => {
     error("PASSWORD TOO SHORT");
   }
   else{
-    User.findOne({username: user.username}).exec((err1, user) => {
+    User.findOne({username: user.username}, function(err1, user){
       if (err1) {
           error("USERNAME FIND ERROR")
       }
        else {
         bcrypt.compare(oldpswd, user.password, (err2, passwordMatch) => {
-          // regenerate session if passwordMatch is true
           if(err2){
             error("PASSWORD FIND ERROR");
           }

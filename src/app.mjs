@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import bodyParser from 'body-parser';
 import session from 'express-session';
 import './db.mjs';
-import mongoose, { model } from 'mongoose';
+import mongoose from 'mongoose';
 import * as auth from './auth.mjs';
 import bcrypt from 'bcryptjs';
 
@@ -397,10 +397,7 @@ app.post('/passwordReset', (req, res) => {
   else{  
     // attempt to register new user
     auth.reset(req.session.user, req.body.oldpswd, req.body.newpswd1, req.body.newpswd2, error, success);
-
-    
   }
-
 });
 // listen to a port
 app.listen(process.env.PORT || 3000);
