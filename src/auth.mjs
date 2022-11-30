@@ -4,6 +4,36 @@ import mongoose from 'mongoose';
 // assumes that User was registered in `./db.mjs`
 const User = mongoose.model('User');
 
+const reset = (user, oldpswd, newpswd1, newpswd2, error, success) => {
+  if((((oldpswd.length < 8)) || (newpswd1.length < 8))){
+    error("PASSWORD TOO SHORT");
+  }
+  else if(newpswd1 != newpswd2){
+    error("ENTERED DIFFERENT NEW PASSWORD");
+  }
+  else{
+    User.findOne({username: user.username}).exec((err1, user) => {
+      if (err1) {
+          error("USERNAME FIND ERROR")
+      }
+       else {
+        bcrypt.compare(oldpswd, user.password, (err2, passwordMatch) => {
+          // regenerate session if passwordMatch is true
+          if(err2){
+            error("PASSWORD FIND ERROR");
+          }
+          else if(!passwordMatch){
+            error("PASSWORDS DO NOT MATCH");
+          }
+          else{
+            success(user, newpswd1);
+          }
+         });
+      }
+    });
+  }
+}
+
 const startAuthenticatedSession = (req, user, cb) => {
   req.session.regenerate(function(err){
     if (!err) {
@@ -99,6 +129,7 @@ const authRequired = authRequiredPaths => {
 };
 
 export {
+  reset,
   startAuthenticatedSession,
   endAuthenticatedSession,
   register,

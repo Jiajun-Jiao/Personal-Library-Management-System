@@ -369,54 +369,36 @@ app.get('/passwordReset', (req, res) => {
 });
 
 app.post('/passwordReset', (req, res) => {
+
+  function success(user, newpswd) {
+    bcrypt.hash(newpswd, 10, function(err3, hash) {
+      if (err3){
+        error("HASHING ERROR");
+      }else{
+        user.password = hash;
+        user.save(function(err){
+          if(err){
+            error("USER SAVE ERROR");
+          }
+        });
+        res.redirect("/");
+      }
+    });
+  }
+
+  function error(err) {
+    console.log(err)
+    res.render("password-reset", {message: err});
+  }
+
   if (!req.session.user) {
     res.render("login", {message: "Login First to Reset Password"});
   }
-  else if((((req.body.oldpswd.length < 8)) || (req.body.newpswd1.length < 8))){
-    console.log("PASSWORD TOO SHORT");
-    res.render("password-reset", {
-      message: "PASSWORD TOO SHORT"
-    });
-  }
-  else if(req.body.newpswd1 != req.body.newpswd2){
-    console.log("ENTERED DIFFERENT NEW PASSWORD");
-    res.render("password-reset", {
-      message: "ENTERED DIFFERENT NEW PASSWORD"
-    });
-  }
-  else{
-    User.findOne({username: req.session.user.username}).exec((err, user) => {
-      if (err) {
-          res.send(err);
-      }
-       else {
-        bcrypt.compare(req.body.oldpswd, user.password, (err, passwordMatch) => {
-          // regenerate session if passwordMatch is true
-          if(err){
-            console.log("PASSWORD FIND ERROR");
-          }
-          else if(!passwordMatch){
-            console.log("PASSWORDS DO NOT MATCH");
-          }
-          else{
-            bcrypt.hash(req.body.newpswd1, 10, function(err, hash) {
-              if (err){
-                console.log(err);
-              }else{
-                user.password = hash;
-                user.save(function(err){
-                  if(err){
-                    console.log("err");
-                    res.send(err);
-                  }
-                });
-                res.redirect("/");
-              }
-            });
-          }
-         });
-      }
-  });
+  else{  
+    // attempt to register new user
+    auth.reset(req.session.user, req.body.oldpswd, req.body.newpswd1, req.body.newpswd2, error, success);
+
+    
   }
 
 });
