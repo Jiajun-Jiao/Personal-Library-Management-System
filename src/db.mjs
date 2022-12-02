@@ -1,10 +1,11 @@
-// 1ST DRAFT DATA MODEL
+import * as dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import Schema from 'mongoose';
 import mongooseSlugPlugin from 'mongoose-slug-plugin';
 import fs from 'fs';
 import path from 'path';
 import url from 'url';
+dotenv.config()
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
 let dbconf;
@@ -20,7 +21,7 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
  dbconf = conf.dbconf;
 } else {
  // if we're not in PRODUCTION mode, then use
- dbconf = 'mongodb://localhost/finalprojectconfig';
+ dbconf = process.env.MONGOOSE_URL;
 }
 // 
 mongoose.connect(dbconf);

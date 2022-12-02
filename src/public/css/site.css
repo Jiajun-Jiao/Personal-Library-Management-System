@@ -34,9 +34,13 @@ header {
 	position: relative;
 	background-color: #ccddff;
 	margin: 0px;
-	height: 2em;
+	height: 3em;
 	padding: 0.25em 1em 0em 1em;
 	/*text-align: right;*/
+}
+
+.login-info{
+	margin-top: 0.4em;
 }
 
 nav > a, nav > a:visited {

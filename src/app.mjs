@@ -1,5 +1,6 @@
-import express from 'express'
-import path from 'path'
+import * as dotenv from 'dotenv';
+import express from 'express';
+import path from 'path';
 import { fileURLToPath } from 'url';
 import bodyParser from 'body-parser';
 import session from 'express-session';
@@ -7,6 +8,8 @@ import './db.mjs';
 import mongoose from 'mongoose';
 import * as auth from './auth.mjs';
 import bcrypt from 'bcryptjs';
+
+dotenv.config()
 
 // passport.js
 
@@ -42,9 +45,9 @@ const app = express();
 
 // enable sessions
 const sessionOptions = {
-    secret: 'secret cookie thang (store this elsewhere!)',
+    secret: process.env.secret,
     resave: true,
-      saveUninitialized: true
+    saveUninitialized: true
 };
 app.use(session(sessionOptions));
 
@@ -58,18 +61,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // serve static files
 app.use(express.static(staticPath));
 
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-}));
-
 const User = mongoose.model('User');
 const Book = mongoose.model('Book');
 const BookList = mongoose.model('BookList');
-
-const loginMessages = {"PASSWORDS DO NOT MATCH": 'Incorrect password', "USER NOT FOUND": 'User doesn\'t exist'};
-const registrationMessages = {"USERNAME ALREADY EXISTS": "Username already exists", "USERNAME PASSWORD TOO SHORT": "Username or password is too short"};
 
 
 ///////////////////////
@@ -270,14 +264,19 @@ app.get('/booklist/:slug/:slug2/detail', (req, res) => {
 });
 
 app.get('/booklist/:slug/:slug2/detail/edit', (req, res) => {
-  BookList.findOne({name: req.params.slug}).populate('user').exec((err, booklist) => {
-    if (err){
-      console.log("error: SLUG ERROR");
-      res.render('error', {message: "SLUG ERROR"});
-    }else{
-      res.render('book-detail-edit', {book: booklist.books.find(book => (book.title == req.params.slug2))});
-    }
-  });
+  if(req.session.user){
+    BookList.findOne({name: req.params.slug}).populate('user').exec((err, booklist) => {
+      if (err){
+        console.log("error: SLUG ERROR");
+        res.render('error', {message: "SLUG ERROR"});
+      }else{
+        res.render('book-detail-edit', {book: booklist.books.find(book => (book.title == req.params.slug2))});
+      }
+    });
+  }
+  else{
+    res.redirect('/login');
+  }
 });
 
 app.post('/booklist/:slug/:slug2/detail/edit', (req, res) => {
@@ -321,14 +320,20 @@ app.post('/booklist/:slug/:slug2/detail/edit', (req, res) => {
 });
 
 app.get('/booklist/:slug/edit', (req, res) => {
-  BookList.findOne({name: req.params.slug}).exec((err, booklist) => {
-    if (err){
-      console.log("error: SLUG ERROR");
-      res.render('error', {message: "SLUG ERROR"});
-    }else{
-      res.render('booklist-edit', {booklist: booklist});
-    }
-  });
+  if(req.session.user){
+    BookList.findOne({name: req.params.slug}).exec((err, booklist) => {
+      if (err){
+        console.log("error: SLUG ERROR");
+        res.render('error', {message: "SLUG ERROR"});
+      }else{
+        res.render('booklist-edit', {booklist: booklist});
+      }
+    });
+  }
+  else{
+    res.redirect('/login');
+  }
+  
 });
 
 app.post('/booklist/:slug/edit', (req, res) => {
@@ -369,7 +374,6 @@ app.get('/passwordReset', (req, res) => {
 });
 
 app.post('/passwordReset', (req, res) => {
-
   function success(user, newpswd) {
     bcrypt.hash(newpswd, 10, function(err3, hash) {
       if (err3){
@@ -400,4 +404,4 @@ app.post('/passwordReset', (req, res) => {
   }
 });
 // listen to a port
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || process.env.localPORT);
