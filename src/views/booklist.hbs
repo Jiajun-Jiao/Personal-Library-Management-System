@@ -1,8 +1,8 @@
 <h2>{{bookList.name}}</h2>
-<a href="/booklist/{{bookList.name}}/edit"><button>Edit</button></a>
+<a href="/booklist/{{bookList.name}}/edit"><button class="btn btn-outline-warning">Edit</button></a>
 <br>
 <br>
-<div class = "booklist">
+<div class = "booklist" class="mb-3">
     <b>Created BY:</b> <u>{{bookList.user.username}}</u><br>
     <br>
     <b>Created AT:</b> {{bookList.createdAt}}<br>
@@ -13,13 +13,15 @@
     </div>
     <br>
     <b>BOOKS:</b> 
-    <a href="/booklist/{{bookList.name}}/addbook"><button>Add Book</button></a>
+    <a href="/booklist/{{bookList.name}}/addbook"><button class="btn btn-outline-success" id = "detail">Add Book</button></a>
     <ol>
     {{#each bookList.books as |b|}}
-    {{b.title}}&nbsp;-&nbsp;<a href= "/booklist/{{b.list}}/{{b.title}}/detail"><button>detail</button></a>
+    {{b.title}}&nbsp;-&nbsp;<a href= "/booklist/{{b.list}}/{{b.title}}/detail"><button class="btn btn-outline-info" id = "detail">detail</button></a>
     <br>
     {{/each}}
     </ol>
     <br>
-    <a class = "return-button" href="/"><button>Return Home</button></a>
+    <center>
+        <a href="/"><button class = "btn btn-outline-primary">Return Home</button></a>
+    </center>
 </div>

@@ -1,5 +1,5 @@
 <h2>{{book.title}}</h2>
-<a href="/booklist/{{book.list}}/{{book.title}}/detail/edit"><button>Edit</button></a>
+<a href="/booklist/{{book.list}}/{{book.title}}/detail/edit"><button class="btn btn-outline-warning">Edit</button></a>
 <br>
 <br>
 <div class = "booklist">
@@ -22,5 +22,7 @@
     <div class = "listdesc">
         {{bookList.description}}<br>
     </div>
-    <a href="/booklist/{{book.list}}"><button>Return to Booklist</button></a>
+    <center>
+        <a href="/booklist/{{book.list}}"><button class = "btn btn-outline-primary">Return to Booklist</button></a>
+    </center>
 </div>

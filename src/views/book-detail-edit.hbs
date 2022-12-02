@@ -5,45 +5,45 @@
 <form method="POST" action="">
 <div>
     <label for="Title">Title:</label>
-    <input type="text" id="title" name="title" value= {{book.title}}>
+    <input class="form-control" type="text" id="title" name="title" value= {{book.title}}>
 </div>
 <div>
     <label for="Time">Read Date:</label>
-    <input type="date" id="time" name="time" value= {{book.time}}>
+    <input class="form-control" type="date" id="time" name="time" value= {{book.time}}>
 </div>
 <div>
     <label for="Rating">Rating:</label>
-    <input type="number" id="rating" name="number" placeholder= "1 - 5" value= {{book.rating}} min="1" max="5">
+    <input class="form-control" type="number" id="rating" name="number" placeholder= "1 - 5" value= {{book.rating}} min="1" max="5">
 </div>
 <div>
     <label for="ContentOverview">Content Overview:</label>
-    <textarea name="contentOverview" id="contentOverview">{{book.contentOverview}}</textarea>
+    <textarea class="form-control" name="contentOverview" id="contentOverview">{{book.contentOverview}}</textarea>
 </div>
 <div>
     <label for="Comment">Comment:</label>
-    <textarea name="comment" id="comment">{{book.comment}}</textarea>
+    <textarea class="form-control" name="comment" id="comment">{{book.comment}}</textarea>
 </div>
     <label for="Status">Plan to Read Again?</label>
 {{#if book.status}}
 <div class = "radio-group">
     <label for="yes">
-    <input type="radio" id="yes" name="choose" value= "yes" checked>
+    <input class="form-control" type="radio" id="yes" name="choose" value= "yes" checked>
     Yes
     </label>
     <label for="no">
-    <input type="radio" id="no" name="choose" value= "no">
+    <input class="form-control" type="radio" id="no" name="choose" value= "no">
     No</label>
 </div>
 {{else}}
 <div class = "radio-group">
     <label for="yes">
-    <input type="radio" id="yes" name="choose" value= "yes" >
+    <input class="form-control" type="radio" id="yes" name="choose" value= "yes" >
     Yes
     </label>
     <label for="no">
-    <input type="radio" id="no" name="choose" value= "no" checked>
+    <input class="form-control" type="radio" id="no" name="choose" value= "no" checked>
     No</label>
 </div>
 {{/if}}
-<input type="submit" value="Confirm Change">
+<input class="d-grid col-5 mx-auto btn btn-primary" type="submit" value="Confirm Change">
 </form>

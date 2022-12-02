@@ -1,34 +1,34 @@
-<h2>Add Book in {{bookList.name}}</h2>
+<h2>Add Book to {{bookList.name}}</h2>
 <form method="POST" action="">
 <div>
     <label for="Title">Title:</label>
-    <input type="text" id="title" name="title" value= "">
+    <input  class="form-control" type="text" id="title" name="title" value= "">
 </div>
 <div>
     <label for="Time">Read Date:</label>
-    <input type="date" id="time" name="time" value= "">
+    <input class="form-control" type="date" id="time" name="time" value= "">
 </div>
 <div>
     <label for="Rating">Rating:</label>
-    <input type="number" id="rating" name="number" placeholder= "1 - 5" value= "" min="1" max="5">
+    <input class="form-control" type="number" id="rating" name="number" placeholder= "1 - 5" value= "" min="1" max="5">
 </div>
 <div>
     <label for="ContentOverview">Content Overview:</label>
-    <textarea name="contentOverview" id="contentOverview"></textarea>
+    <textarea class="form-control" name="contentOverview" id="contentOverview"></textarea>
 </div>
 <div>
     <label for="Comment">Comment:</label>
-    <textarea name="comment" id="comment"></textarea>
+    <textarea class="form-control" name="comment" id="comment"></textarea>
 </div>
     <label for="Status">Plan to Read Again?</label>
 <div class = "radio-group">
     <label for="yes">
-    <input type="radio" id="yes" name="choose" value= "yes">
+    <input class="form-control" type="radio" id="yes" name="choose" value= "yes">
     Yes
     </label>
     <label for="no">
-    <input type="radio" id="no" name="choose" value= "no">
+    <input class="form-control" type="radio" id="no" name="choose" value= "no">
     No</label>
 </div>
-<input type="submit" value="Add">
+<input class="d-grid col-5 mx-auto btn btn-primary" type="submit" value="Add">
 </form>

@@ -1,14 +1,17 @@
 <h2>{{booklist.name}}</h2>
-    
-</script>
+<style>
+    ol{
+	    padding-left: 0em;
+    }
+</style>
 <form method="POST" action="">
 <div>
     <label for="Name">Name:</label>
-    <input type="text" id="name" name="name" value= {{booklist.name}}>
+    <input class="form-control" type="text" id="name" name="name" value= {{booklist.name}}>
 </div>
 <div>
     <label for="Description">Description:</label>
-    <textarea name="description" id="description">{{booklist.description}}</textarea>
+    <textarea class="form-control" name="description" id="description">{{booklist.description}}</textarea>
 </div>
 <div>
     <b>BOOKS:</b> 
@@ -19,5 +22,5 @@
     {{/each}}
     </ol>
 </div>
-<input type="submit" value="Confirm Change">
+<input class="d-grid col-4 mx-auto btn btn-primary" type="submit" value="Confirm Change">
 </form>

@@ -8,8 +8,13 @@ body {
 	margin-top: 0px;
 	padding: none;
 }
+
+label{
+	text-align: left;
+}
+
 ol{
-	padding-left: 0;
+	padding-left: 0em;
 }
 
 .home-link {
@@ -29,7 +34,7 @@ header {
 	position: relative;
 	background-color: #ccddff;
 	margin: 0px;
-	height: 1.5em;
+	height: 2em;
 	padding: 0.25em 1em 0em 1em;
 	/*text-align: right;*/
 }
@@ -74,6 +79,7 @@ div.content {
 	border-style: solid;
 	margin-left: 20%;
 	margin-right: 20%;
+	margin-top: 8px;
 }
 
 .note {
@@ -123,7 +129,11 @@ button{
 	border-radius: 0.4em;
 }
 
-.return-button{
-	margin: 0 auto;
-    display: block;
+#detail{
+	padding-top: 0.05em;
+	padding-bottom: 0.05em;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	margin-top: 0.15em;
+	margin-bottom: 0.15em;
 }
