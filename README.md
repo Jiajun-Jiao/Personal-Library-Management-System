@@ -109,47 +109,6 @@ no image shown
 
 ![list](documentation/site-map.jpg)
 
-## User Stories or Use Cases
-
-![list](documentation/UseCaseDiagram.jpg)
-
-## Research Topics
-
-<!-- (__TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed) -->
-
-* (5 points) Integrate user authentication
-    * I'm going to be using passport.js for user authentication
-    * It is an authentication middleware for Node.js
-    * It does not mount routes or assume any particular database schema, which maximizes flexibility and allows application-level decisions to be made
-    
-* (3 points) Unit testing with JavaScript
-    * It is executed in the browser to test if all functionalities are working as desired during the development cycle
-    * It saves time to ensure that all code meets quality standards before being deployed
-    * I'm going to be using Unit.js, Mocha, Jest, Jasmine
-
-* (5 points) Automated functional testing for all of routes
-    * It is a technique that executes test cases automatically using some specific code during the level of system testing
-    * It is crucial for faster software release cycles; it verifies that the application is bug-free and ready for release.
-    * I'm going to use Selenium, Rainforest QA, Headless Chrome, and Cypress.
-
-13 points total out of 8 required points. Research topics are subjected to modify. I listed more points since I haven't decided which ones to do... I'm not familiar with any one of those :( 
-<!-- (___TODO__: addtional points will __not__ count for extra credit) -->
-
-
 ## Unit Testing Screenshot
 
 ![list](documentation/unit%20testing.png)
-
-## Annotations / References Used
-
-<!-- (__TODO__: list any tutorials/references/etc. that you've based your code off of) -->
-
-1. [passport.js authentication docs](http://passportjs.org/docs)
-2. [unit.js](https://unitjs.com)
-3. [Mocha](https://mochajs.org)
-4. [Jest](https://jestjs.io)
-5. [Jasmine](https://jasmine.github.io)
-6. [Selenium docs](https://www.selenium.dev/documentation)
-7. [Rainforest QA](https://www.rainforestqa.com)
-8. [Headless Chrome get started](https://developer.chrome.com/blog/headless-chrome)
-9. [Cypress](https://www.cypress.io)
