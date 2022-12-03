@@ -346,7 +346,12 @@ app.post('/booklist/:slug/edit', (req, res) => {
 });
 
 app.get('/passwordReset', (req, res) => {
-  res.render('password-reset');
+  if(req.session.user){
+    res.render('password-reset');
+  }
+  else{
+    res.redirect('/login');
+  }
 });
 
 app.post('/passwordReset', (req, res) => {
