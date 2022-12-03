@@ -4,6 +4,8 @@ import mongoose from 'mongoose';
 // assumes that User was registered in `./db.mjs`
 const User = mongoose.model('User');
 
+// Reference:
+// https://www.npmjs.com/package/bcryptjs
 const reset = (user, oldpswd, newpswd1, newpswd2, error, success) => {
   if(newpswd1 !== newpswd2){
     error("ENTERED DIFFERENT NEW PASSWORD");
