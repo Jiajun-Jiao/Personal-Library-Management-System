@@ -1,3 +1,5 @@
+// npx mocha --loader=mock-import test/test-auth.mjs
+
 /* eslint-disable-file no-unused-expressions: 0 */
 import bcrypt from 'bcryptjs';
 import chai from 'chai';

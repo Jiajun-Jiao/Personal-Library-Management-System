@@ -66,7 +66,14 @@ app.use((req, res, next) => {
 ////////////////////
 app.get('/', (req, res) => {
   BookList.find({}).sort('-createdAt').exec((err, lists) => {
-    res.render('index', {user: req.session.user, home: true, booklists: lists});
+    let sta = false;
+    if(lists.length === 0){
+      sta = true;
+    }
+    else{
+      sta = false;
+    }
+    res.render('index', {user: req.session.user, home: true, booklists: lists, status: sta});
   });
 });
 

@@ -64,10 +64,7 @@ const ListSchema = new mongoose.Schema({
   // [{type: Schema.Types.ObjectId, ref: 'Book'}]
 });
 
-// TODO: add remainder of setup for slugs, connection, registering models, etc. below
-// ArticleSchema.plugin(mongooseSlugPlugin, {tmpl: '<%=title%>'});
 ListSchema.plugin(mongooseSlugPlugin, {tmpl: '<%=name%>'});
-
 
 //register models
 mongoose.model('User', UserSchema);
