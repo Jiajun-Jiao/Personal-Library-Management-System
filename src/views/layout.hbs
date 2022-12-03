@@ -14,7 +14,7 @@
 	<div id="outer">
 		<header>
 			<nav>
-				<span class="home-link"><a href="/" class="btn btn-primary">Home</a> {{#if user}}| <a href="/booklist/add" class="btn btn-primary">Add Booklist</a> | <a href="/passwordReset" class="btn btn-primary">Reset Password</a>{{/if}}</span>
+				<span class="home-link"><a href="/" class="btn btn-primary">Home</a> {{#if user}}| <a href="/booklist/add" class="btn btn-primary">Add Booklist</a> | <a href="/passwordReset" class="btn btn-primary">Reset Password</a> | <a href="/logout" class="btn btn-primary">Logout</a>{{/if}}</span>
 				<span class="login-status">
 					{{#if user}}
 					<div class="login-info">Logged in as: {{user.username}}</div>

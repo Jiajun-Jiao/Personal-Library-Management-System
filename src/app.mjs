@@ -40,6 +40,8 @@ const User = mongoose.model('User');
 const Book = mongoose.model('Book');
 const BookList = mongoose.model('BookList');
 
+const loginMessages = {"PASSWORDS DO NOT MATCH": 'Incorrect password', "USER NOT FOUND": 'User doesn\'t exist'};
+const registrationMessages = {"USERNAME ALREADY EXISTS": "Username already exists", "USERNAME PASSWORD TOO SHORT": "Username or password is too short"};
 
 ///////////////////////
 // CUSTOM MIDDLEWARE //
@@ -66,6 +68,16 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
   BookList.find({}).sort('-createdAt').exec((err, lists) => {
     res.render('index', {user: req.session.user, home: true, booklists: lists});
+  });
+});
+
+app.get('/logout', (req, res) => {
+  auth.endAuthenticatedSession(req, err => {
+    if (!err) {
+        res.redirect('/');
+    } else {
+        res.render('error', {message: 'err authing???'}); 
+    }
   });
 });
 
