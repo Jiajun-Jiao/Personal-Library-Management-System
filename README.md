@@ -2,12 +2,6 @@
 
 # Personal Library Management System
 
-## Milestone 3 Update:
-
-* I implemented an extra add-book form as well as the storage of that data into an array in specific BookList in mongodb. And then I implemented a .hbs file to render the details of the book. The changes along this process include the modification of books attribute in ListSchema in db.mjs from type ObjectId to Array, as well as the status attribute in BookSchema from type Number to String in order to fit the radio input in the new layout. An additional attribute "list" is also added into the BookSchema to keep track of the list that the book belongs to. Therefore I could add links such as "Return to Booklist" and, most importantly, generate a link that contains the bookList-name within its own loop "#each bookList.books as |b|". (To be more clear, please refer to line 16-18 in booklist-detail.hbs).
-
-* I figured out that my idea of implementing unit testing may not fit my current project, and therefore I'm planning to seek help from office hour. On the other hand, I started to made more progress on another research topic - password.js. The tasks to be done in the future is simply detailedly modify the verify function according my application's database, schema, and password-hashing function.
-
 ## Overview
 
 <!-- (__TODO__: a brief one or two paragraph, high-level description of your project) -->
@@ -20,14 +14,10 @@ Personal Library Management System is a web app that allows users to keep track 
 
 ## Data Model
 
-<!-- (__TODO__: a description of your application's data and their relationships to each other)  -->
-
-The application will store Users, Lists and Items
+The application will store Users, Books, and Lists.
 
 * users can have multiple lists (via references)
-* each list can have multiple books (by embedding)
-
-<!-- (__TODO__: sample documents) -->
+* each list can have multiple books (by embedding array)
 
 An Example User:
 
@@ -35,11 +25,10 @@ An Example User:
 {
   username: "libraryhost",
   hash: // a password hash,
-  lists: // an array of references to List documents
 }
 ```
 
-An Example List with Embedded Items:
+An Example List with Embedded Books:
 
 ```javascript
 {
@@ -48,28 +37,24 @@ An Example List with Embedded Items:
   description: "Novels that are character-driven rather than plot-driven, examine the human condition, use language in an experimental or poetic fashion, or are simply considered \"serious\" art.",
   items: [
     { title: "The Great Gatsby",
-      time: "20220913",
-      rating: 4.3,
+      time: "09/13/2022",
+      rating: 4,
       contentOverview: "The novel depicts first-person narrator Nick Carraway's interactions with mysterious millionaire Jay Gatsby and Gatsby's obsession to reunite with his former lover, Daisy Buchanan",
       comment: "a GREAT book!",
-      status: "yes",
+      status: true,
       list: "Literary Fiction"},
     
     { title: "Animal Farm",
-      time: "20221002",
-      rating: 4.6,
+      time: "10/02/2022",
+      rating: 5,
       contentOverview: "the story of a group of farm animals who rebel against their human farmer, hoping to create a society where the animals can be equal, free, and happy. Ultimately, the rebellion is betrayed, and the farm ends up in a state as bad as it was before, under the dictatorship of a pig named Napoleon.",
       comment: "another GREAT book!",
-      status: "no",
+      status: false,
       list: "Literary Fiction"},
   ],
   createdAt: // timestamp
 }
 ```
-
-## [Link to Commented First Draft Schema](db.mjs) 
-
-<!-- (__TODO__: create a first draft of your Schemas in db.mjs and link to it) -->
 
 ## Wireframes
 
@@ -96,29 +81,35 @@ An Example List with Embedded Items:
 
 ![list](documentation/list-slug.png)
 
+/booklist/slug/edit - page for editing the detail of a specific book list
+
+![list](documentation/list-slug-edit.png)
+
 /booklist/slug/addbook - page for adding a new book
 
 ![list](documentation/addbook.png)
 
 /booklist/slug/slug2/detail - page for showing specific book
 
-![list](documentation/book-slug.png)
+![list](documentation/book-detail.png)
 
-/list/slug/description - (hasn't been implemented yet) page for editing description of a book list
+/booklist/slug/slug2/detail/edit - page for editing the detail of a specific book
 
-![list](documentation/list-description.jpg)
+![list](documentation/book-edit.png)
+
+/passwordReset - page for resetting the password
+
+![list](documentation/reset.png)
+
+/logout - page for processing logging out. If logout successfully, will redirect to main page
+
+no image shown
 
 ## Site map
-
-<!-- (__TODO__: draw out a site map that shows how pages are related to each other) 
-
-Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia/commons/2/20/Sitemap_google.jpg), but you can create one without the screenshots, drop shadows, etc. ... just names of pages and where they flow to. -->
 
 ![list](documentation/site-map.jpg)
 
 ## User Stories or Use Cases
-
-<!-- (__TODO__: write out how your application will be used through [user stories](http://en.wikipedia.org/wiki/User_story#Format) and / or [use cases](https://en.wikipedia.org/wiki/Use_case)) -->
 
 ![list](documentation/UseCaseDiagram.jpg)
 
@@ -145,9 +136,9 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
 <!-- (___TODO__: addtional points will __not__ count for extra credit) -->
 
 
-## [Link to Initial Main Project File](app.mjs) 
+## Unit Testing Screenshot
 
-<!-- (__TODO__: create a skeleton Express application with a package.json, app.mjs, views folder, etc. ... and link to your initial app.mjs) -->
+![list](documentation/unit%20testing.png)
 
 ## Annotations / References Used
 
