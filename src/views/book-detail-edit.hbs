@@ -1,3 +1,10 @@
+<style>
+    #switc{
+        margin-left: 0px;
+        float:none;
+        margin-right: 22%;
+    }
+</style>
 <h2>{{book.title}}</h2>
 <script id="example-template" type="text/x-handlebars-template">
     
@@ -25,24 +32,12 @@
 </div>
     <label for="Status">Plan to Read Again?</label>
 {{#if book.status}}
-<div class = "radio-group">
-    <label for="yes">
-    <input class="form-control" type="radio" id="yes" name="choose" value= "yes" checked>
-    Yes
-    </label>
-    <label for="no">
-    <input class="form-control" type="radio" id="no" name="choose" value= "no">
-    No</label>
+<div class="form-check form-switch">
+    <input id="switc" class="form-check-input" name = "check" type="checkbox" id="flexSwitchCheckDefault" checked>
 </div>
 {{else}}
-<div class = "radio-group">
-    <label for="yes">
-    <input class="form-control" type="radio" id="yes" name="choose" value= "yes" >
-    Yes
-    </label>
-    <label for="no">
-    <input class="form-control" type="radio" id="no" name="choose" value= "no" checked>
-    No</label>
+<div class="form-check form-switch">
+    <input id="switc" class="form-check-input" name = "check" type="checkbox" id="flexSwitchCheckDefault">
 </div>
 {{/if}}
 <input class="d-grid col-5 mx-auto btn btn-primary" type="submit" value="Confirm Change">

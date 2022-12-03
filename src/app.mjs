@@ -11,31 +11,6 @@ import bcrypt from 'bcryptjs';
 
 dotenv.config()
 
-// passport.js
-
-// import passport from 'passport';
-// import LocalStrategy from 'passport-local';
-
-// passport.use(new LocalStrategy(function verify(username, password, cb) {
-//   db.get('SELECT * FROM users WHERE username = ?', [ username ], function(err, user) {
-//     if (err) { return cb(err); }
-//     if (!user) { return cb(null, false, { message: 'Incorrect username or password.' }); }
-
-//     crypto.pbkdf2(password, user.salt, 310000, 32, 'sha256', function(err, hashedPassword) {
-//       if (err) { return cb(err); }
-//       if (!crypto.timingSafeEqual(user.hashed_password, hashedPassword)) {
-//         return cb(null, false, { message: 'Incorrect username or password.' });
-//       }
-//       return cb(null, user);
-//     });
-//   });
-// }));
-
-// app.post('/login/password', passport.authenticate('local', {
-//   successRedirect: '/',
-//   failureRedirect: '/login'
-// }));
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const staticPath = path.resolve(__dirname, 'public');
@@ -217,7 +192,7 @@ app.get('/booklist/:slug/addbook', (req, res) => {
 app.post('/booklist/:slug/addbook', (req, res) => {
   // TODO: complete POST /booklist/add
   let sta = false;
-  if(req.body.choose === "yes"){
+  if(req.body.check === "on"){
     sta = true;
   }
   else{
@@ -225,6 +200,7 @@ app.post('/booklist/:slug/addbook', (req, res) => {
   }
 
   if(req.session.user){
+    console.log("check = " + req.body.check);
     const book = new Book({
       title: req.body.title,
       time: req.body.time,
@@ -287,7 +263,7 @@ app.post('/booklist/:slug/:slug2/detail/edit', (req, res) => {
         res.render('error', {message: "SLUG ERROR"});
       }else{
         let sta = false;
-        if(req.body.choose === "yes"){
+        if(req.body.check === "on"){
           sta = true;
         }
         else{

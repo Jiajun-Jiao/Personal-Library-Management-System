@@ -1,3 +1,10 @@
+<style>
+    #switc{
+        margin-left: 0px;
+        float:none;
+        margin-right: 22%;
+    }
+</style>
 <h2>Add Book to {{bookList.name}}</h2>
 <form method="POST" action="">
 <div>
@@ -20,8 +27,8 @@
     <label for="Comment">Comment:</label>
     <textarea class="form-control" name="comment" id="comment"></textarea>
 </div>
-    <label for="Status">Plan to Read Again?</label>
-<div class = "radio-group">
+    
+{{!-- <div class = "radio-group">
     <label for="yes">
     <input class="form-control" type="radio" id="yes" name="choose" value= "yes">
     Yes
@@ -29,6 +36,10 @@
     <label for="no">
     <input class="form-control" type="radio" id="no" name="choose" value= "no">
     No</label>
+</div> --}}
+<label for="Comment">Plan to Read Again?</label>
+<div class="form-check form-switch">
+    <input id="switc" class="form-check-input" name = "check" type="checkbox" id="flexSwitchCheckDefault">
 </div>
 <input class="d-grid col-5 mx-auto btn btn-primary" type="submit" value="Add">
 </form>
