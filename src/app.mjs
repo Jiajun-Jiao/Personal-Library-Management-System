@@ -10,7 +10,6 @@ import * as auth from './auth.mjs';
 import bcrypt from 'bcryptjs';
 
 dotenv.config()
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const staticPath = path.resolve(__dirname, 'public');
