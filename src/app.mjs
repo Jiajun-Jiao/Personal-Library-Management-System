@@ -225,7 +225,7 @@ app.post('/booklist/:slug/addbook', (req, res) => {
       bookList.books.push(book);
       bookList.save(function(err){
         if(!err){
-          res.redirect('/'); 
+          res.redirect('/booklist/' + req.params.slug); 
         }
         else{
           console.log("error: SAVE ERROR");
